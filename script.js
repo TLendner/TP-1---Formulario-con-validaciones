@@ -22,13 +22,14 @@ function validarMail() {
         requerimientoUser.style.display = "block";
     }
 
+    return exito;
 }
 
 function validarPassword() {
     const password = document.getElementById("password").value;
     const regExp = /[a-zA-Z]/g;
     const numExp = /\d/;
-    const errorMensaje1 = "La contraseña debe contener al menos 8 caracteres."
+    const errorMensaje1 = "La contraseña debe contener 8 caracteres."
     const requerimientoPass = document.getElementById("requerimientoPass");
     let exito = true;
 
@@ -41,13 +42,13 @@ function validarPassword() {
     if (!regExp.test(password)) {
         if(!exito) requerimientoPass.innerHTML += "<br>"; 
         
-        requerimientoPass.innerHTML += "La contraseña debe contener al menos una letra.";
+        requerimientoPass.innerHTML += "La contraseña debe contener una letra.";
         exito = false;
     }
     if (!numExp.test(password)) {
         if(!exito) requerimientoPass.innerHTML += "<br>"; 
         
-        requerimientoPass.innerHTML += "La contraseña debe contener al menos un número.";
+        requerimientoPass.innerHTML += "La contraseña debe contener un número.";
         exito = false;
     }
     if(exito)
@@ -59,8 +60,7 @@ function validarPassword() {
         requerimientoPass.style.display = "block";
     }
 
-
-
+    return exito;
 }
 
 function ConfirmarPassword(){
@@ -86,6 +86,7 @@ function ConfirmarPassword(){
         requerimientoConfirmar.style.display = "block";
     }
 
+    return exito;
 }
 
 function validarUser()
@@ -109,8 +110,19 @@ function validarUser()
     {
         requerimientoUser.style.display = "block";
     }
+
+    return exito;
 }
 
+function validarForm(){
+    if(validarPassword() && validarMail() && validarUser() && ConfirmarPassword())
+    {
+        alert("Lo lograste");
+    }
+    else{
+        alert("No lo lograste. Completa tus datos correctamente");
+    }
+}
 
 let darkmode = localStorage.getItem('darkmode')
 const themeSwitch = document.getElementById('theme-switch')
