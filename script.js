@@ -1,51 +1,115 @@
 
 
 function validarMail() {
-    const caracterMail = "@";
-    let email = document.getElementById("email").value;
-    if (email.includes(caracterMail)) {
-
-    }
-
-
-}
-
-
-
-function validarPassword() {
-    const password = document.getElementById("password").value;
-    const regExp = /[a-zA-Z]/g;
-    const errorMensaje1 = "La contraseña debe contener al menos 8 caracteres."
-    const requerimiento1Pass = document.getElementById("requerimiento1Pass");
+    const mail = document.getElementById("email").value;
+    const errorMensaje = "El correo electronico no es valido."
+    const requerimientoUser = document.getElementById("requerimientoMail");
     let exito = true;
+    const caracterMail = "@";
 
-    requerimiento1Pass.innerHTML = "";
+    requerimientoUser.textContent = "";
 
-    if (password.length < 8 && password.length !== 0) {
-        requerimiento1Pass.innerHTML = errorMensaje1;
-        exito = false;
-    }
-    if (!regExp.test(password)) {
-        if(!exito) requerimiento1Pass.innerHTML += "<br>"; 
-        
-        requerimiento1Pass.innerHTML += "La contraseña debe contener al menos una letra";
+    if (!mail.includes(caracterMail)) {
+        requerimientoMail.textContent = errorMensaje;
         exito = false;
     }
     if(exito)
     {
-        requerimiento1Pass.style.display = "none";
+        requerimientoUser.style.display = "none";
     }
     else
     {
-        requerimiento1Pass.style.display = "block";
+        requerimientoUser.style.display = "block";
+    }
+
+}
+
+function validarPassword() {
+    const password = document.getElementById("password").value;
+    const regExp = /[a-zA-Z]/g;
+    const numExp = /\d/;
+    const errorMensaje1 = "La contraseña debe contener al menos 8 caracteres."
+    const requerimientoPass = document.getElementById("requerimientoPass");
+    let exito = true;
+
+    requerimientoPass.innerHTML = "";
+
+    if (password.length < 8) {
+        requerimientoPass.innerHTML = errorMensaje1;
+        exito = false;
+    }
+    if (!regExp.test(password)) {
+        if(!exito) requerimientoPass.innerHTML += "<br>"; 
+        
+        requerimientoPass.innerHTML += "La contraseña debe contener al menos una letra.";
+        exito = false;
+    }
+    if (!numExp.test(password)) {
+        if(!exito) requerimientoPass.innerHTML += "<br>"; 
+        
+        requerimientoPass.innerHTML += "La contraseña debe contener al menos un número.";
+        exito = false;
+    }
+    if(exito)
+    {
+        requerimientoPass.style.display = "none";
+    }
+    else
+    {
+        requerimientoPass.style.display = "block";
     }
 
 
 
 }
 
-document.getElementById("email").onchange = validarMail();
+function ConfirmarPassword(){
+    const password = document.getElementById("password").value;
+    const confirmarPass = document.getElementById("confirmar").value;
+    const errorMensaje = "La contraseña debe coincidir."
+    const requerimientoConfirmar = document.getElementById("requerimientoConfirmar");
+    let exito = true;
 
+    requerimientoPass.textContent = "";
+
+    if(password != confirmarPass || password == "")
+    {
+        requerimientoConfirmar.textContent = errorMensaje;
+        exito = false;
+    }
+    if(exito)
+    {
+        requerimientoConfirmar.style.display = "none";
+    }
+    else
+    {
+        requerimientoConfirmar.style.display = "block";
+    }
+
+}
+
+function validarUser()
+{
+    const user = document.getElementById("username").value;
+    const errorMensaje = "El usuario debe contener al menos 3 caracteres."
+    const requerimientoUser = document.getElementById("requerimientoUser");
+    let exito = true;
+
+    requerimientoUser.textContent = "";
+
+    if (user.length < 3) {
+        requerimientoUser.textContent = errorMensaje;
+        exito = false;
+    }
+    if(exito)
+    {
+        requerimientoUser.style.display = "none";
+    }
+    else
+    {
+        requerimientoUser.style.display = "block";
+    }
+}
 
 
 let darkmode = localStorage.getItem('darkmode')
