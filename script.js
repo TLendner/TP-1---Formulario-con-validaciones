@@ -118,6 +118,7 @@ function validarForm(){
     if(validarPassword() && validarMail() && validarUser() && ConfirmarPassword())
     {
         alert("Lo lograste");
+        location.reload();
     }
     else{
         alert("No lo lograste. Completa tus datos correctamente");
